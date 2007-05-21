@@ -19,7 +19,7 @@ URL: 		http://www.get-e.org/
 Source: 	%{name}-%{version}.tar.bz2
 BuildRoot: 	%{_tmppath}/%{name}-buildroot
 
-BuildRequires: 	ecore-devel
+BuildRequires: 	ecore-devel >= 0.9.9
 BuildRequires:	multiarch-utils
 
 %description
