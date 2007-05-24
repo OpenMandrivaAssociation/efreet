@@ -1,6 +1,6 @@
 %define	name	efreet
 %define	version 0.0.3.002
-%define release %mkrel 1
+%define release %mkrel 2
 
 %define cvsrel 0
 
