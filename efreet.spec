@@ -1,17 +1,14 @@
-%define	name	efreet
+%define	name efreet
 %define	version 0.0.3.002
 %define release %mkrel 3
 
-%define cvsrel 0
-
-%define major 	1
+%define major 0
 %define libname %mklibname %{name} %major
 %define libnamedev %mklibname %{name} %major -d
 
 Summary: 	Enlightened efreet
 Name: 		%{name}
 Version: 	%{version}
-Epoch:		1
 Release: 	%{release}
 License: 	BSD
 Group: 		Graphical desktop/Enlightenment
@@ -19,7 +16,7 @@ URL: 		http://www.get-e.org/
 Source: 	%{name}-%{version}.tar.bz2
 BuildRoot: 	%{_tmppath}/%{name}-buildroot
 
-BuildRequires: 	ecore-devel >= 0.9.9
+BuildRequires: 	ecore-devel >= 0.9.9.038
 BuildRequires:	multiarch-utils
 
 %description
@@ -35,7 +32,7 @@ specifications are included:
 %package -n %{libname}
 Summary: Enlightened efreet Libraries
 Group: System/Libraries
-Provides: efreet = %{epoch}:%{version}-%{release}
+Provides: efreet = %{version}-%{release}
 
 %description -n %{libname}
 Efreet libraries
@@ -52,9 +49,9 @@ specifications are included:
 %package -n %{libname}-devel
 Summary: Enlightened efreet Library headers and development libraries
 Group: System/Libraries
-Requires: %{libname} = %{epoch}:%{version}
-Provides: lib%{name}-devel = %{epoch}:%{version}-%{release}
-Provides: %{name}-devel = %{epoch}:%{version}-%{release}
+Requires: %{libname} = %{version}
+Provides: lib%{name}-devel = %{version}-%{release}
+Provides: %{name}-devel = %{version}-%{release}
 
 %description -n %{libname}-devel
 Efreet development headers and development libraries.
