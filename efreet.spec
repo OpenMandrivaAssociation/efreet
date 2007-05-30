@@ -34,6 +34,7 @@ specifications are included:
 Summary: Enlightened efreet Libraries
 Group: System/Libraries
 Provides: efreet = %{version}-%{release}
+Provides: %{libname} = %{version}-%{release}
 
 %description -n %{libname}
 Efreet libraries
@@ -51,7 +52,7 @@ specifications are included:
 Summary: Enlightened efreet Library headers and development libraries
 Group: System/Libraries
 Requires: %{libname} = %{version}
-Provides: lib%{name}-devel = %{version}-%{release}
+Provides: %{libname}-devel = %{version}-%{release}
 Provides: %{name}-devel = %{version}-%{release}
 
 %description -n %{libname}-devel
