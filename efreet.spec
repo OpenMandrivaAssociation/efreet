@@ -9,6 +9,7 @@
 Summary: 	Enlightened efreet
 Name: 		%{name}
 Version: 	%{version}
+Epoch:          1
 Release: 	%{release}
 License: 	BSD
 Group: 		Graphical desktop/Enlightenment
