@@ -1,8 +1,8 @@
 %define	name efreet
 %define	version 0.0.3.002
-%define release %mkrel 5
+%define release %mkrel 6
 
-%define major 0
+%define major 1
 %define libname %mklibname %{name} %major
 %define libnamedev %mklibname %{name} %major -d
 
@@ -86,7 +86,7 @@ rm -rf $RPM_BUILD_ROOT
 %files -n %{libname}
 %defattr(-,root,root)
 %doc AUTHORS COPYING README
-%{_libdir}/*.so.*
+%{_libdir}/*.so.%{major}*
 
 %files -n %{libname}-devel
 %defattr(-,root,root)
