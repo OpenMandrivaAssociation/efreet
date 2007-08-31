@@ -62,7 +62,7 @@ Efreet development headers and development libraries.
 %setup -q
 
 %build
-%configure2_5x
+%configure2_5x --disable-ecore-desktop
 
 %make
 
@@ -87,6 +87,8 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(-,root,root)
 %doc AUTHORS COPYING README
 %{_libdir}/*.so.%{major}*
+%{_libdir}/lib*_mime.so.0*
+
 
 %files -n %{libname}-devel
 %defattr(-,root,root)
