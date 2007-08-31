@@ -1,6 +1,6 @@
 %define	name efreet
-%define	version 0.0.3.002
-%define release %mkrel 9
+%define	version 0.0.3.006
+%define release %mkrel 1
 
 %define major 1
 %define libname %mklibname %{name} %major
