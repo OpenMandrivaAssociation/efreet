@@ -62,7 +62,7 @@ Efreet development headers and development libraries.
 %setup -q
 
 %build
-%configure2_5x --disable-ecore-desktop
+%configure2_5x
 
 %make
 
