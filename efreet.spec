@@ -1,6 +1,6 @@
 %define	name efreet
-%define	version 0.0.3.006
-%define release %mkrel 3
+%define	version 0.9.0.011
+%define release %mkrel 1
 
 %define major 1
 %define libname %mklibname %{name} %major
@@ -17,7 +17,7 @@ URL: 		http://www.get-e.org/
 Source: 	%{name}-%{version}.tar.bz2
 BuildRoot: 	%{_tmppath}/%{name}-buildroot
 
-BuildRequires: 	ecore-devel >= 0.9.9.038
+BuildRequires: 	ecore-devel >= 0.9.9.041
 BuildRequires:	multiarch-utils
 
 %description
