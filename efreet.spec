@@ -1,6 +1,6 @@
 %define	name efreet
 %define	version 0.9.0.011
-%define release %mkrel 1
+%define release %mkrel 2
 
 %define major 1
 %define libname %mklibname %{name} %major
@@ -33,7 +33,6 @@ specifications are included:
 %package -n %{libname}
 Summary: Enlightened efreet Libraries
 Group: System/Libraries
-Provides: efreet = %{version}-%{release}
 Provides: %{libname} = %{version}-%{release}
 
 %description -n %{libname}
