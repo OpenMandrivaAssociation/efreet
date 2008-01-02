@@ -15,6 +15,7 @@ License: 	BSD
 Group: 		Graphical desktop/Enlightenment
 URL: 		http://www.get-e.org/
 Source: 	%{name}-%{version}.tar.bz2
+BuildRoot: 	%{_tmppath}/%{name}-buildroot
 
 BuildRequires: 	ecore-devel >= 0.9.9.041
 BuildRequires:	multiarch-utils
