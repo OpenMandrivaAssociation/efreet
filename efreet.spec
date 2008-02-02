@@ -1,24 +1,23 @@
 %define	name efreet
-%define	version 0.9.0.011
-%define release %mkrel 2
+%define	version 0.0.3.042
+%define release %mkrel 1
 
-%define major 1
+%define major 0
 %define libname %mklibname %{name} %major
 %define libnamedev %mklibname %{name} %major -d
 
 Summary: 	Enlightened efreet
 Name: 		%{name}
 Version: 	%{version}
-Epoch:          1
+Epoch:          2
 Release: 	%{release}
 License: 	BSD
 Group: 		Graphical desktop/Enlightenment
-URL: 		http://www.get-e.org/
+URL: 		http://www.enlightenment.org/
 Source: 	%{name}-%{version}.tar.bz2
 BuildRoot: 	%{_tmppath}/%{name}-buildroot
 
-BuildRequires: 	ecore-devel >= 0.9.9.041
-BuildRequires:	multiarch-utils
+BuildRequires: 	ecore-devel
 
 %description
 An implementation of several specifications from freedesktop.org intended
@@ -33,7 +32,6 @@ specifications are included:
 %package -n %{libname}
 Summary: Enlightened efreet Libraries
 Group: System/Libraries
-Provides: %{libname} = %{version}-%{release}
 
 %description -n %{libname}
 Efreet libraries
@@ -48,11 +46,12 @@ specifications are included:
   o Menu
 
 %package -n %{libname}-devel
+Provides: %{libname} = %{version}-%{release}
 Summary: Enlightened efreet Library headers and development libraries
 Group: System/Libraries
-Requires: %{libname} = %{version}
-Provides: %{libname}-devel = %{version}-%{release}
-Provides: %{name}-devel = %{version}-%{release}
+Requires: %{libname} = %{epoch}:%{version}
+Provides: lib%{name}-devel = %{epoch}:%{version}-%{release}
+Provides: %{name}-devel = %{epoch}:%{version}-%{release}
 
 %description -n %{libname}-devel
 Efreet development headers and development libraries.
@@ -62,7 +61,6 @@ Efreet development headers and development libraries.
 
 %build
 %configure2_5x
-
 %make
 
 %install
@@ -79,12 +77,10 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(-,root,root)
 %doc AUTHORS COPYING README
 %{_bindir}/*
-#%_datadir/doc/%{libname}-%version/*
 %_datadir/%name/*
 
 %files -n %{libname}
 %defattr(-,root,root)
-%doc AUTHORS COPYING README
 %{_libdir}/*.so.%{major}*
 %{_libdir}/lib*_mime.so.0*
 
