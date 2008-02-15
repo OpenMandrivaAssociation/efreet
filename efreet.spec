@@ -1,6 +1,6 @@
 %define	name efreet
 %define	version 0.0.3.042
-%define release %mkrel 2
+%define release %mkrel 3
 
 %define major 0
 %define libname %mklibname %{name} %major
@@ -16,7 +16,7 @@ Group: 		Graphical desktop/Enlightenment
 URL: 		http://www.enlightenment.org/
 Source: 	%{name}-%{version}.tar.bz2
 BuildRoot: 	%{_tmppath}/%{name}-buildroot
-BuildRequires: 	ecore-devel
+BuildRequires: 	ecore-devel => 0.9.9.042
 
 %description
 An implementation of several specifications from freedesktop.org intended
