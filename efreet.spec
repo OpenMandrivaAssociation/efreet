@@ -45,7 +45,6 @@ specifications are included:
   o Menu
 
 %package -n %libnamedev
-Provides: %{libname} = %{version}-%{release}
 Summary: Enlightened efreet Library headers and development libraries
 Group: System/Libraries
 Requires: %{libname} = %{epoch}:%{version}
