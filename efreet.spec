@@ -1,6 +1,6 @@
 %define	name efreet
-%define	version 0.0.3.042
-%define release %mkrel 4
+%define	version 0.5.0.043
+%define release %mkrel 1
 
 %define major 0
 %define libname %mklibname %{name} %major
@@ -14,7 +14,7 @@ Release: 	%{release}
 License: 	BSD
 Group: 		Graphical desktop/Enlightenment
 URL: 		http://www.enlightenment.org/
-Source: 	%{name}-%{version}.tar.bz2
+Source: 	http://download.enlightenment.org/snapshots/LATEST/%{name}-%{version}.tar.bz2
 BuildRoot: 	%{_tmppath}/%{name}-buildroot
 BuildRequires: 	ecore-devel => 0.9.9.042
 
