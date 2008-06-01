@@ -44,15 +44,16 @@ specifications are included:
   o Icon Theme
   o Menu
 
-%package -n %{libname}-devel
+%package -n %libnamedev
 Provides: %{libname} = %{version}-%{release}
 Summary: Enlightened efreet Library headers and development libraries
 Group: System/Libraries
 Requires: %{libname} = %{epoch}:%{version}
 Provides: lib%{name}-devel = %{epoch}:%{version}-%{release}
 Provides: %{name}-devel = %{epoch}:%{version}-%{release}
+Obsoletes: %mklibname efreet 0 -d
 
-%description -n %{libname}-devel
+%description -n %libnamedev
 Efreet development headers and development libraries.
 
 %prep
@@ -64,7 +65,7 @@ Efreet development headers and development libraries.
 
 %install
 rm -fr %buildroot
-%makeinstall
+%makeinstall_std
 
 %post -n %{libname} -p /sbin/ldconfig
 %postun -n %{libname} -p /sbin/ldconfig
@@ -81,10 +82,8 @@ rm -rf $RPM_BUILD_ROOT
 %files -n %{libname}
 %defattr(-,root,root)
 %{_libdir}/*.so.%{major}*
-%{_libdir}/lib*_mime.so.0*
 
-
-%files -n %{libname}-devel
+%files -n %libnamedev
 %defattr(-,root,root)
 %{_libdir}/lib*.so
 %{_libdir}/lib*.*a
