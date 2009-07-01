@@ -1,5 +1,5 @@
 %define	name efreet
-%define	version 0.5.0.060
+%define	version 0.5.0.061
 %define release %mkrel 1
 
 %define major 0
