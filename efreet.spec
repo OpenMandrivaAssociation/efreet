@@ -1,5 +1,5 @@
 %define	name efreet
-%define	version 0.5.0.063
+%define	version 0.5.0.49898
 %define release %mkrel 1
 
 %define major 0
@@ -80,6 +80,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(-,root,root)
 %doc AUTHORS COPYING README
 %{_bindir}/*
+%{_libexecdir}/efreet/efreet_desktop_cache_create
 %_datadir/%name/*
 
 %files -n %{libname}
