@@ -1,8 +1,8 @@
 %define	name efreet
-%define	version 0.5.0.49898
-%define release %mkrel 1
+%define	version 1.0.0
+%define release %mkrel -c beta 1
 
-%define major 0
+%define major 1
 %define libname %mklibname %{name} %major
 %define libnamedev %mklibname %{name} -d
 
@@ -14,9 +14,9 @@ Release: 	%{release}
 License: 	BSD
 Group: 		Graphical desktop/Enlightenment
 URL: 		http://www.enlightenment.org/
-Source: 	http://download.enlightenment.org/snapshots/LATEST/%{name}-%{version}.tar.bz2
+Source: 	http://download.enlightenment.org/releases/%{name}-%{version}.beta.tar.bz2
 BuildRoot: 	%{_tmppath}/%{name}-buildroot
-BuildRequires: 	ecore-devel >= 0.9.9.050
+BuildRequires: 	ecore-devel >= 1.0.0
 
 %description
 An implementation of several specifications from freedesktop.org intended
@@ -56,7 +56,7 @@ Obsoletes: %mklibname efreet 0 -d
 Efreet development headers and development libraries.
 
 %prep
-%setup -q
+%setup -qn %{name}-%{version}.beta
 
 %build
 %configure2_5x
@@ -91,5 +91,5 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(-,root,root)
 %{_libdir}/lib*.so
 %{_libdir}/lib*.*a
-%{_includedir}/%name/*.h
+%{_includedir}/*
 %{_libdir}/pkgconfig/*
