@@ -1,22 +1,49 @@
-%define	name efreet
-%define	version 1.0.1
-%define release %mkrel 1
+#Tarball of svn snapshot created as follows...
+#Cut and paste in a shell after removing initial #
 
-%define major 1
-%define libname %mklibname %{name} %major
-%define libnamedev %mklibname %{name} -d
+#svn co http://svn.enlightenment.org/svn/e/trunk/efreet efreet; \
+#cd efreet; \
+#SVNREV=$(LANGUAGE=C svn info | grep "Last Changed Rev:" | cut -d: -f 2 | sed "s@ @@"); \
+#v_maj=$(cat configure.ac | grep 'm4_define(\[v_maj\],' | cut -d' ' -f 2 | cut -d[ -f 2 | cut -d] -f 1); \
+#v_min=$(cat configure.ac | grep 'm4_define(\[v_min\],' | cut -d' ' -f 2 | cut -d[ -f 2 | cut -d] -f 1); \
+#v_mic=$(cat configure.ac | grep 'm4_define(\[v_mic\],' | cut -d' ' -f 2 | cut -d[ -f 2 | cut -d] -f 1); \
+#PKG_VERSION=$v_maj.$v_min.$v_mic.$SVNREV; \
+#cd ..; \
+#tar -Jcf efreet-$PKG_VERSION.tar.xz efreet/ --exclude .svn --exclude .*ignore
+
+
+%define snapshot 1
+
+%if %snapshot
+%define	svndate	20120103
+%define	svnrev	66149
+%endif
+
+%define	major 1
+%define	libname %mklibname %{name} %major
+%define	develname %mklibname %{name} -d
 
 Summary: 	Enlightened efreet
-Name: 		%{name}
-Version: 	%{version}
-Epoch:          2
-Release: 	%{release}
-License: 	BSD
-Group: 		Graphical desktop/Enlightenment
-URL: 		http://www.enlightenment.org/
-Source: 	http://download.enlightenment.org/releases/%{name}-%{version}.tar.bz2
-BuildRoot: 	%{_tmppath}/%{name}-buildroot
-BuildRequires: 	ecore-devel >= 1.0.0
+Name:		efreet
+Epoch:		2
+%if %snapshot
+Version:	1.1.99.%{svnrev}
+Release:	0.%{svndate}.1
+%else
+Version:	1.1.0
+Release:	1
+%endif
+License:	BSD
+Group:		Graphical desktop/Enlightenment
+URL:		http://www.enlightenment.org/
+%if %snapshot
+Source0:	%{name}-%{version}.tar.xz
+%else
+Source0:	http://download.enlightenment.org/releases/%{name}-%{version}.tar.bz2
+%endif
+
+BuildRequires:	pkgconfig(ecore) >= 1.0.0
+Conflicts:	%{libname} < 2:1.1.99.66149-0.20120103.1
 
 %description
 An implementation of several specifications from freedesktop.org intended
@@ -29,8 +56,8 @@ specifications are included:
   o Menu
 
 %package -n %{libname}
-Summary: Enlightened efreet Libraries
-Group: System/Libraries
+Summary:	Enlightened efreet Libraries
+Group:		System/Libraries
 
 %description -n %{libname}
 Efreet libraries
@@ -44,52 +71,51 @@ specifications are included:
   o Icon Theme
   o Menu
 
-%package -n %libnamedev
-Summary: Enlightened efreet Library headers and development libraries
-Group: System/Libraries
-Requires: %{libname} = %{epoch}:%{version}
-Provides: lib%{name}-devel = %{epoch}:%{version}-%{release}
-Provides: %{name}-devel = %{epoch}:%{version}-%{release}
-Obsoletes: %mklibname efreet 0 -d
+%package -n %{develname}
+Summary:	Enlightened efreet Library headers and development libraries
+Group:		System/Libraries
+Requires:	%{libname} = %{EVRD}
+Provides:	%{name}-devel = %{EVRD}
+Obsoletes:	%_lib}efreet0-devel
 
-%description -n %libnamedev
+%description -n %{develname}
 Efreet development headers and development libraries.
 
 %prep
-%setup -qn %{name}-%{version}
+%if %snapshot
+%setup -qn %{name}
+%else
+%setup -q
+%endif
 
 %build
-%configure2_5x
+%if %snapshot
+NOCONFIGURE=yes ./autogen.sh
+%endif
+
+%configure2_5x \
+	--disable-static
+
 %make
 
 %install
-rm -fr %buildroot
+rm -fr %{buildroot}
 %makeinstall_std
 
-%if %mdkversion < 200900
-%post -n %{libname} -p /sbin/ldconfig
-%endif
-%if %mdkversion < 200900
-%postun -n %{libname} -p /sbin/ldconfig
-%endif
-
-%clean
-rm -rf $RPM_BUILD_ROOT
+# Get rid of unneeded testing cruft.
+rm -rf %{buildroot}%{_datadir}/%{name}
 
 %files
-%defattr(-,root,root)
 %doc AUTHORS COPYING README
-%{_bindir}/*
-%{_libexecdir}/efreet/efreet_desktop_cache_create
-%_datadir/%name/*
+%{_bindir}/%{name}*
+%{_libexecdir}/%{name}/%{name}_desktop_cache_create
+%{_libexecdir}/%{name}/%{name}_icon_cache_create
 
 %files -n %{libname}
-%defattr(-,root,root)
 %{_libdir}/*.so.%{major}*
 
-%files -n %libnamedev
-%defattr(-,root,root)
+%files -n %{develname}
 %{_libdir}/lib*.so
-%{_libdir}/lib*.*a
-%{_includedir}/*
 %{_libdir}/pkgconfig/*
+%{_includedir}/%{name}*
+
