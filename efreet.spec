@@ -5,12 +5,12 @@
 Summary: 	Enlightened efreet
 Name:		efreet
 Epoch:		2
-Version:	1.7.5
+Version:	1.7.6
 Release:	1
 License:	BSD
 Group:		Graphical desktop/Enlightenment
 URL:		http://www.enlightenment.org/
-Source0:	http://download.enlightenment.fr/releases/%{name}-%{version}.tar.bz2
+Source0:	http://download.enlightenment.fr/releases/%{name}-%{version}.tar.gz
 
 BuildRequires:	pkgconfig(ecore) >= 1.7.0
 BuildRequires:	pkgconfig(ecore-file) >= 1.7.0
