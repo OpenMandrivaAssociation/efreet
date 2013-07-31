@@ -1,15 +1,15 @@
 %define	major	1
-%define	libname %mklibname %{name} %major
+%define	libname %mklibname %{name} %{major}
 %define	devname %mklibname %{name} -d
 
-Summary: 	Enlightened efreet
+Summary:	Enlightened efreet
 Name:		efreet
 Epoch:		2
-Version:	1.7.7
+Version:	1.7.8
 Release:	1
 License:	BSD
 Group:		Graphical desktop/Enlightenment
-URL:		http://www.enlightenment.org/
+Url:		http://www.enlightenment.org/
 Source0:	http://download.enlightenment.fr/releases/%{name}-%{version}.tar.bz2
 
 BuildRequires:	pkgconfig(ecore) >= 1.7.0
@@ -80,7 +80,7 @@ rm -rf %{buildroot}%{_datadir}/%{name}
 %{_libdir}/lib%{name}*.so.%{major}*
 
 %files -n %{devname}
-%{_libdir}/lib*.so
+%{_libdir}/lib%{name}*.so
 %{_libdir}/pkgconfig/*
 %{_includedir}/%{name}*
 
